@@ -1,0 +1,18 @@
+.jumbotron {
+    height: 600px;
+    background-color: #3ABEF9;
+    background-image: url("images/240247304-2000x1000.png");
+    background-repeat: no-repeat, repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.lead {
+    font-family: 'Open Sans', sans-serif;
+    color: #ffffff;
+}
+
+.display-4 {
+    font-family: 'Baloo Thambi', cursive;
+    color: #ffffff;
+}
