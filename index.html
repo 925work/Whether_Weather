@@ -6,14 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Whether Weather</title>
-    <link rel="icon" type="image/png" href="#">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
 
-    <link rel="stylesheet" href="assets/reset.css">
+    <link rel="stylesheet" href="assets/css/reset.css">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Baloo+Thambi|Open+Sans&display=swap" rel="stylesheet">
 
     <title>Whether Weather</title>
@@ -37,23 +36,103 @@
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <form class="form-inline my-2 my-lg-0">
                         <input class="form-control mr-sm-2" type="number" placeholder="Zipcode" aria-label="Zipcode">
-                        <input type="submit" class="btn btn-outline-light my-2 my-sm-0" name="Search" id="submit-button">
+                        <input class="form-control mr-sm-2" type="date" value="Date" id="date-input">
+                        <input type="submit" class="btn btn-outline-light my-2 my-sm-0" name="Search"
+                            id="submit-button">
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
+    <div id="results" class="container">
+        <div class="row justify-content-center">
+
+            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 m-2">
+                <div class="card rounded border-danger" style="width: 18rem;">
+                    <img class="card-img-top" src="http://via.placeholder.com/286x180" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                            of
+                            the card's content.</p>
+                        <a href="#" class="btn btn-danger">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 m-2">
+                <div class="card rounded border-success" style="width: 18rem;">
+                    <img class="card-img-top" src="http://via.placeholder.com/286x180" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                            of the card's content.</p>
+                        <a href="#" class="btn btn-success">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 m-2">
+                <div class="card rounded border-info" style="width: 18rem;">
+                    <img class="card-img-top" src="http://via.placeholder.com/286x180" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the
+                            bulk of the card's content.</p>
+                        <a href="#" class="btn btn-info">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 m-2">
+                <div class="card rounded border-warning" style="width: 18rem;">
+                    <img class="card-img-top" src="http://via.placeholder.com/286x180" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                            of
+                            the card's content.</p>
+                        <a href="#" class="btn btn-warning">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 m-2">
+                <div class="card rounded border-secondary" style="width: 18rem;">
+                    <img class="card-img-top" src="http://via.placeholder.com/286x180" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                            of the card's content.</p>
+                        <a href="#" class="btn btn-secondary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 m-2">
+                <div class="card rounded border-primary" style="width: 18rem;">
+                    <img class="card-img-top" src="http://via.placeholder.com/286x180" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the
+                            bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+    <script src="assets/javascript/app.js"></script>
 </body>
 
 </html>
