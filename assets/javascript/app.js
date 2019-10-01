@@ -110,7 +110,7 @@ $(document).on('click', '#submit-button', function () {
 })
 
 function appendResponse() {
-    var data = response.data //filler for response
+    var data = response.data //filler for response from number of events
 
     //for loop for card results
     for (var i = 0; i < data.length; i++) {
@@ -135,21 +135,35 @@ function appendResponse() {
         cardBody.addClass('card-body');
        
         var cardTitle = ("<h5>");
-        cardTitle.text("filler event title"); //source response event title 
+        cardTitle.text("filler event title"); //source response.results.entities.name
         cardTitle.addClass("card-title");
+
+        var cardCatagory = ("<p>");
+        cardCatagory.text("filler catagory"); //type of event response.results.category
+        cardCatagory.addClass("card-text");
+
+        var cardStart = ("<p>");
+        cardStart.text("filler data and time"); //response.start
+        cardStart.addClass("card-text");
+
+        var cardWeather = ("<p>");
+        cardWeather.text("filler Weather"); //response from weather API
+        cardWeather.addClass("card-text");
         
         var cardText = ("<p>");
-        cardText.text("filler information"); //source info from response
+        cardText.text("filler information"); //source info from response.results.description
         cardText.addClass("card-text");
+
+        var googleSearch = 'response title filler'.replace(/ /g, "+");
         
         var learnMore = ("<a>");
         learnMore.addClass("btn btn-success"); //source btn color from type of weather
         learnMore.attr({
-            'href': '#' //the event's URL
+            'href': 'https://www.google.com/search?q=' + googleSearch + '&btnI' //google search i'm feeling lucky event title
         })
         learnMore.text('Learn More');
 
-        cardBody.append(learnMore, cardText, cardTitle);
+        cardBody.append(cardTitle, cardStart, cardWeather, cardText, learnMore);
         cardDiv.append(img, cardBody);
         mainDiv.append(cardDiv);
 
