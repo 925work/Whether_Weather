@@ -19,7 +19,7 @@ $("#submit-button").on("click", function (event) {
     //https://developer.mapquest.com/user/me/plan 50000 free transactions per month
     //API Key B5fuwvmcvd8CPHiAvF1Owzo2FwrBAOA8
     //http://www.mapquestapi.com/geocoding/v1/address?key=B5fuwvmcvd8CPHiAvF1Owzo2FwrBAOA8&location=84095%2C+us&thumbMaps=false
-    var queryZipCodeURL = "http://www.mapquestapi.com/geocoding/v1/address?key=B5fuwvmcvd8CPHiAvF1Owzo2FwrBAOA8&location=" + zipcodeUserInput + "%2C+us&thumbMaps=false"
+    var queryZipCodeURL = "https://www.mapquestapi.com/geocoding/v1/address?key=B5fuwvmcvd8CPHiAvF1Owzo2FwrBAOA8&location=" + zipcodeUserInput + "%2C+us&thumbMaps=false"
     $.ajax({
         url: queryZipCodeURL,
         method: "GET"
