@@ -23,11 +23,71 @@
 }
 
 .card-img-top {
-    width: 268px;
+    width: 286px;
     height: 180px;
 }
 
 .navbar {
     text-align: center;
     background-color: #3ABEF9;
+}
+
+.hot-button {
+    background-color: #ED1C24;
+    color: #ffffff;
+}
+
+.hot-button:hover {
+    background-color: #ffffff;
+    color: #ED1C24;
+    border-color: #ED1C24;
+}
+
+.hot-border {
+    border-color:#ED1C24;
+}
+
+.warm-button {
+    background-color: #EBC08D;
+    color: #ffffff;
+}
+
+.warm-button:hover {
+    background-color: #ffffff;
+    color: #EBC08D;
+    border-color: #EBC08D;
+}
+
+.warm-border {
+    border-color: #EBC08D;
+}
+
+.cold-button {
+    background-color: #63E2FF;
+    color: #ffffff;
+}
+
+.cold-button:hover{
+    background-color: #ffffff;
+    color: #63E2FF;
+    border-color: #63E2FF;
+}
+
+.cold-border {
+    border-color: #63E2FF;
+}
+
+.default-button {
+    background-color: #4F00BC;
+    color: #ffffff;
+}
+
+.default-button:hover {
+    background-color: #ffffff;
+    color: #4F00BC;
+    border-color: #4F00BC
+}
+
+.default-border {
+    border-color: #4F00BC;
 }
