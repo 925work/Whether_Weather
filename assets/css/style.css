@@ -1,3 +1,10 @@
+/* Body */
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* Header and Header Animation */
+
 @keyframes animatedBackground {
     from { background-position: 0 0; }
     to { background-position: -3000px 0; }
@@ -13,7 +20,6 @@
 }
 
 .lead {
-    font-family: 'Open Sans', sans-serif;
     color: #ffffff;
 }
 
@@ -22,16 +28,59 @@
     color: #ffffff;
 }
 
-.card-img-top {
-    width: 286px;
-    height: 180px;
+/* Card */
+.card {
+    margin: 1rem;
 }
 
-.navbar {
-    text-align: center;
-    background-color: #3ABEF9;
+.location {
+    background-color: transparent;
+    border-bottom-color: transparent;
+    text-transform: uppercase;
+    color: #9E9E9E;
+    font-weight: bold;
+    padding-top: 1.5rem;
+    padding-bottom: 0.25rem;
+}
+.event-name {
+    font-weight: bold;
+    color: #212121;
+    font-size: 2rem;
 }
 
+.temp {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+/* Default Button */
+.default-button {
+    background-color: #4FC3F7;
+    color: #ffffff;
+}
+
+.default-button:hover {
+    background-color: #ffffff;
+    color: #4FC3F7;
+    border-color: #4FC3F7
+}
+
+.default-button-reverse {
+    background-color: #ffffff;
+    color: #4FC3F7;
+    border-color: #4FC3F7
+}
+
+.default-button-reverse:hover {
+    background-color: #4FC3F7;
+    color: #ffffff;
+}
+
+.default-border {
+    border-color: #4FC3F7;
+}
+
+/* Hot Button */
 .hot-button {
     background-color: #ED1C24;
     color: #ffffff;
@@ -43,51 +92,71 @@
     border-color: #ED1C24;
 }
 
+.hot-button-reverse {
+    background-color: #ffffff;
+    color: #ED1C24;
+    border-color: #ED1C24;
+}
+
+.hot-button-reverse:hover {
+    background-color: #ED1C24;
+    color: #ffffff;
+}
+
 .hot-border {
     border-color:#ED1C24;
 }
 
+/* Warm Button */
 .warm-button {
-    background-color: #EBC08D;
+    background-color: #009E00;
     color: #ffffff;
 }
 
 .warm-button:hover {
     background-color: #ffffff;
-    color: #EBC08D;
-    border-color: #EBC08D;
+    color: #009E00;
+    border-color: #009E00;
+}
+
+.warm-button-reverse {
+    background-color: #ffffff;
+    color: #009E00;
+    border-color: #009E00;
+}
+
+.warm-button-reverse:hover {
+    background-color: #009E00;
+    color: #ffffff;
 }
 
 .warm-border {
-    border-color: #EBC08D;
+    border-color: #009E00;
 }
 
+/* Cold Button */
 .cold-button {
-    background-color: #63E2FF;
+    background-color: #A3A1FF;
     color: #ffffff;
 }
 
-.cold-button:hover{
+.cold-button:hover {
     background-color: #ffffff;
-    color: #63E2FF;
-    border-color: #63E2FF;
+    color: #A3A1FF;
+    border-color: #A3A1FF;
+}
+
+.cold-button-reverse {
+    background-color: #ffffff;
+    color: #A3A1FF;
+    border-color: #A3A1FF;
+}
+
+.cold-button-reverse:hover {
+    background-color: #A3A1FF;
+    color: #ffffff;
 }
 
 .cold-border {
-    border-color: #63E2FF;
-}
-
-.default-button {
-    background-color: #4F00BC;
-    color: #ffffff;
-}
-
-.default-button:hover {
-    background-color: #ffffff;
-    color: #4F00BC;
-    border-color: #4F00BC
-}
-
-.default-border {
-    border-color: #4F00BC;
+    border-color: #A3A1FF;
 }
