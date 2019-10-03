@@ -159,7 +159,8 @@ function appendResponse() {
         var learnMore = ("<a>");
         learnMore.addClass("btn btn-success"); //source btn color from type of weather
         learnMore.attr({
-            'href': 'https://www.google.com/search?q=' + googleSearch + '&btnI' //google search i'm feeling lucky event title
+            'href': 'https://www.google.com/search?q=' + googleSearch + '&btnI', //google search i'm feeling lucky event title
+            'target': '_blank'
         })
         learnMore.text('Learn More');
 
