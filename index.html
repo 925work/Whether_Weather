@@ -35,7 +35,7 @@
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="number" placeholder="Zipcode" aria-label="Zipcode">
+                        <input class="form-control mr-sm-2" type="number" placeholder="Zipcode" aria-label="Zipcode" id="zipcode-input" inputmode="numeric" pattern="^(?(^00000(|-0000))|(\d{5}(|-\d{4})))$">
                         <input type="submit" class="btn btn-outline-light my-2 my-sm-0" name="Search"
                             id="submit-button">
                     </form>
@@ -47,76 +47,70 @@
     <div id="results" class="container">
         <div class="row justify-content-center" id="results-div">
 
-            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 m-2">
-                <div class="card rounded border-danger" style="width: 18rem;">
-                    <img class="card-img-top" src="http://via.placeholder.com/286x180" alt="Card image cap">
+            <div class="col-12">
+                <div class="card hot-border">
+                    <div class="location card-header">
+                        Location
+                    </div>
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                            of
-                            the card's content.</p>
-                        <a href="#" class="btn btn-danger">Learn More</a>
+                        <h5 class="card-title event-name">Event Name</h5>
+                        <p class="card-text description">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Eveniet, non quas modi aspernatur corrupti reiciendis numquam aperiam suscipit voluptates
+                            aliquam expedita quia alias ipsam quaerat maxime asperiores hic ut est!</p>
+                        <p class="card-text temp">98&deg</p>
+                        <a href="#" class="btn hot-button">Learn More</a>
+                        <a href="#" class="btn hot-button-reverse">Directions</a>
                     </div>
                 </div>
             </div>
 
-            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 m-2">
-                <div class="card rounded border-success" style="width: 18rem;">
-                    <img class="card-img-top" src="http://via.placeholder.com/286x180" alt="Card image cap">
+            <div class="col-12">
+                <div class="card warm-border">
+                    <div class="location card-header">
+                        Location
+                    </div>
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                            of the card's content.</p>
-                        <a href="#" class="btn btn-success">Learn More</a>
+                        <h5 class="card-title event-name">Event Name</h5>
+                        <p class="card-text description">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Eveniet, non quas modi aspernatur corrupti reiciendis numquam aperiam suscipit voluptates
+                            aliquam expedita quia alias ipsam quaerat maxime asperiores hic ut est!</p>
+                        <p class="card-text temp">98&deg</p>
+                        <a href="#" class="btn warm-button">Learn More</a>
+                        <a href="#" class="btn warm-button-reverse">Directions</a>
                     </div>
                 </div>
             </div>
 
-            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 m-2">
-                <div class="card rounded border-info" style="width: 18rem;">
-                    <img class="card-img-top" src="http://via.placeholder.com/286x180" alt="Card image cap">
+            <div class="col-12">
+                <div class="card cold-border">
+                    <div class="location card-header">
+                        Location
+                    </div>
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the
-                            bulk of the card's content.</p>
-                        <a href="#" class="btn btn-info">Learn More</a>
+                        <h5 class="card-title event-name">Event Name</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Eveniet, non quas modi aspernatur corrupti reiciendis numquam aperiam suscipit voluptates
+                            aliquam expedita quia alias ipsam quaerat maxime asperiores hic ut est!</p>
+                        <p class="card-text temp">98&deg</p>
+                        <a href="#" class="btn cold-button">Learn More</a>
+                        <a href="#" class="btn cold-button-reverse">Directions</a>
                     </div>
                 </div>
             </div>
 
-            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 m-2">
-                <div class="card rounded border-warning" style="width: 18rem;">
-                    <img class="card-img-top" src="http://via.placeholder.com/286x180" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                            of
-                            the card's content.</p>
-                        <a href="#" class="btn btn-warning">Learn More</a>
+            <div class="col-12">
+                <div class="card default-border">
+                    <div class="location card-header">
+                        Location
                     </div>
-                </div>
-            </div>
-
-            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 m-2">
-                <div class="card rounded border-secondary" style="width: 18rem;">
-                    <img class="card-img-top" src="http://via.placeholder.com/286x180" alt="Card image cap">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                            of the card's content.</p>
-                        <a href="#" class="btn btn-secondary">Learn More</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 m-2">
-                <div class="card rounded border-primary" style="width: 18rem;">
-                    <img class="card-img-top" src="http://via.placeholder.com/286x180" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the
-                            bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Learn More</a>
+                        <h5 class="card-title event-name">Event Name</h5>
+                        <p class="card-text description">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Eveniet, non quas modi aspernatur corrupti reiciendis numquam aperiam suscipit voluptates
+                            aliquam expedita quia alias ipsam quaerat maxime asperiores hic ut est!</p>
+                        <p class="card-text temp">98&deg</p>
+                        <a href="#" class="btn default-button">Learn More</a>
+                        <a href="#" class="btn default-button-reverse">Directions</a>
                     </div>
                 </div>
             </div>
