@@ -1,26 +1,76 @@
-//Open Weather API Key: 094564d4319b1a4807606b1734534529
-//5 day forecast is available at any location or city. It includes weather data every 3 hours. Forecast is available in JSON or XML format.
-zipcodeUserInput = 84095;
-var queryURL = "https://api.openweathermap.org/data/2.5/forecast?zip=" + zipcodeUserInput + ",us&APPID=e66a1bd808ecea1b18d6edc1a56dece6"
-
-$.ajax({
-    url: queryURL,
-    method: "GET"
-})
-    .then(function (response) {
-        console.log(queryURL);
-        console.log(response);
+$("#submit-button").on("click", function(event) {
+    var latitude = "";
+    var longitude = "";
+    zipcodeArray = [];
+  
+    event.preventDefault();
+    var zipcodeUserInput = parseInt($("#zip-input").val().trim())
+  //https://developer.mapquest.com/user/me/plan 50000 free transactions per month
+  //API Key B5fuwvmcvd8CPHiAvF1Owzo2FwrBAOA8
+  //http://www.mapquestapi.com/geocoding/v1/address?key=B5fuwvmcvd8CPHiAvF1Owzo2FwrBAOA8&location=84095%2C+us&thumbMaps=false
+    var queryZipCodeURL = "http://www.mapquestapi.com/geocoding/v1/address?key=B5fuwvmcvd8CPHiAvF1Owzo2FwrBAOA8&location=" + zipcodeUserInput + "%2C+us&thumbMaps=false"
+    $.ajax({
+      url: queryZipCodeURL,
+      method: "GET"
+    })
+    .then(function(response1) {
+      console.log(queryZipCodeURL);
+      console.log(response1)
+      latitude = response1.results[0].locations[0].latLng.lat;
+      longitude = response1.results[0].locations[0].latLng.lng;
+      predicthq();
     });
-
-
-
-
-
-
-
-
-
-
+    
+  
+  
+  
+  
+    //https://api.predicthq.com/{api-version}/{resource}
+    //Predict HQ
+    //Secret Client Key for Events APINtxSq481FOKSKJkrw_bhDvITG0H9lnRcn70jov_qDYTFbCNVA9HVnw
+    //Events API Key: 33PXWaaGfmpmXsDzo_JEY-lHTEeK0ltxc-5U8jZf
+    //Limit of 10000 calls per month  
+  function predicthq() {
+    latitudeInt= parseFloat(latitude);
+    longitudeInt= parseFloat(longitude);
+  
+    var queryEventsURL = "https://api.predicthq.com" + "/v1/events/?end.lte=2019-10-06&offset=10&within=30mi%40" + latitudeInt + "%2C" + longitudeInt;
+  
+    console.log(queryEventsURL);
+    console.log(latitude);
+    console.log(longitude);
+    $.ajax({
+      url: queryEventsURL,
+      method: "GET",
+      headers: {"Authorization": "Bearer" + " 33PXWaaGfmpmXsDzo_JEY-lHTEeK0ltxc-5U8jZf"}
+    })
+      .then(function(response2) {
+        console.log(response2);
+        for(var i = 0; i < response2.results.length; i++){
+          console.log(parseFloat(response2.results[i].entities[0].formatted_address));
+          console.log(response2.results[i].start)
+        }
+      });
+    }
+  
+  
+  
+  
+    //Open Weather API Key: 094564d4319b1a4807606b1734534529
+    //Limit of 60 calls per minute
+    //5 day forecast is available at any location or city. It includes weather data every 3 hours. Forecast is available in JSON or XML format.
+  function weather() {
+    var queryWeatherURL = "https://api.openweathermap.org/data/2.5/forecast?zip=" + zipcodeUserInput + ",us&APPID=e66a1bd808ecea1b18d6edc1a56dece6"
+    $.ajax({
+      url: queryWeatherURL,
+      method: "GET"
+    })
+      .then(function(response3) {
+        console.log(queryWeatherURL);
+        console.log(response3);
+      });
+    }
+  });
 
 
 
