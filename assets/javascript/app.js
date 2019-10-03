@@ -185,27 +185,21 @@ function appendResponse() {
     for (var i = 0; i < data.length; i++) {
 
         var mainDiv = $("<div>");
-        mainDiv.addClass("col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 m-2");
+        mainDiv.addClass("col-12");
 
         var cardDiv = $("<div>");
-        cardDiv.addClass("card rounded border-success"); //border changes with weather
-        cardDiv.attr({
-            style: "width: 18rem;"
-        })
+        cardDiv.addClass("card default-border"); //border changes with weather
 
-        // var img = ("<img>");
-        // img.addClass("card-img-top");
-        // img.attr({
-        //     'src': data[i].images.original_still.url, //src from results need to change
-        //     'alt': 'Card image cap'
-        // });
+        var location = $("<div>");
+        location.addClass("location card-header");
+        location.text("Location");  //Need to add Location
 
         var cardBody = $("<div>");
         cardBody.addClass('card-body');
 
         var cardTitle = $("<h5>");
         cardTitle.text(response2.results[i].title); //source response.results.entities.name
-        cardTitle.addClass("card-title");
+        cardTitle.addClass("card-title event-name");
 
         var cardCatagory = $("<p>");
         cardCatagory.text(response2.results[i].category); //type of event response.results.category
@@ -217,7 +211,7 @@ function appendResponse() {
 
         var cardWeather = $("<p>");
         cardWeather.text("filler Weather"); //response from weather API
-        cardWeather.addClass("card-text");
+        cardWeather.addClass("card-text temp");
 
         var cardText = $("<p>");
         cardText.text(response2.results[i].description); //source info from response.results.description
@@ -226,15 +220,17 @@ function appendResponse() {
         var googleSearch = response2.results[i].title.replace(/ /g, "+");
 
         var learnMore = $("<a>");
-        learnMore.addClass("btn btn-success"); //source btn color from type of weather
+        learnMore.addClass("btn default-button"); //source btn color from type of weather
         learnMore.attr({
             'href': 'https://www.google.com/search?q=' + googleSearch + '&btnI', //google search i'm feeling lucky event title
             'target': '_blank'
         })
+
+        //Need to add Directions button (.default-button-reverse)
         learnMore.text('Learn More');
 
-        cardBody.append(cardTitle, cardStart, cardWeather, cardText, learnMore);
-        cardDiv.append(cardBody);
+        cardBody.append(cardTitle, cardStart, cardText, cardWeather, learnMore);
+        cardDiv.append(location, cardBody);
         mainDiv.append(cardDiv);
 
         $('#results-div').prepend(mainDiv);
