@@ -27,6 +27,10 @@ $("#submit-button").on("click", function (event) {
 
         //Glen and Alex: Run ALL the code
 
+        $([document.documentElement, document.body]).animate({
+            scrollTop: $("#results-div").offset().top
+        }, 3000);
+
     }else {
         var errorText = $("<p>");
         errorText.text("Please enter a valid 5 digit US zipcode");
