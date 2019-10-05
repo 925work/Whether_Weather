@@ -62,7 +62,7 @@ $("#submit-button").on("click", function (event) {
             .then(function (response2) {
                 console.log(response2);
                 for(var i = 0; i < response2.results.length; i++){
-                    console.log(response2.results[i].entities[0].formatted_address);
+                    console.log(response2.results[i].entities[0].formatted_address.split(",").pop().match(/\d+/g));
                     console.log(response2.results[i].start);
                 }
                 eventApiResponse = response2;
