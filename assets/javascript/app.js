@@ -1,4 +1,5 @@
 var weatherApiResponse;
+var weatherApiArrObj = [];
 var eventApiResponse;
 var zipcodeUserInput;
 var submitDate;
@@ -17,6 +18,7 @@ $("#submit-button").on("click", function (event) {
     console.log(weatherApiResponse);
     eventApiResponse = null;
     console.log(eventApiResponse);
+    weatherApiArrObj = [];
 
     zipcodeUserInput = parseInt($('#zipcode-input').val());
     var validZipcode = zipcode();
@@ -90,8 +92,12 @@ $("#submit-button").on("click", function (event) {
                 .then(function (response3) {
                     console.log(queryWeatherURL);
                     console.log(response3);
-                    weatherApiResponse = response3;
-
+                    weatherApiResponse = response3.list;
+                    console.log(weatherApiResponse);
+                    for (var i = 0; i < weatherApiResponse.length; i++){
+                        weatherApiArrObj.push(weatherApiResponse[i].dt_txt);
+                    }
+                    console.log(weatherApiArrObj);
                 });
         }
         weather();
