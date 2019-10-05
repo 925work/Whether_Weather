@@ -19,11 +19,13 @@ $("#submit-button").on("click", function (event) {
     console.log(eventApiResponse);
 
     zipcodeUserInput = parseInt($('#zipcode-input').val());
-
     var validZipcode = zipcode();
 
     if (validZipcode === true) {
 
+        var latitude = "";
+        var longitude = "";
+        zipcodeArray = [];
 
         var latitude = "";
         var longitude = "";
