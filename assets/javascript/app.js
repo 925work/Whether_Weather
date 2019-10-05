@@ -1,7 +1,10 @@
 var weatherApiResponse;
 var eventApiResponse;
+var zipcodeUserInput;
 
 $("#submit-button").on("click", function (event) {
+
+    event.preventDefault();
 
     $('#results-div').empty();
 
@@ -14,8 +17,21 @@ $("#submit-button").on("click", function (event) {
     var longitude = "";
     zipcodeArray = [];
 
-    event.preventDefault();
-    var zipcodeUserInput = parseInt($('#zipcode-input').val());
+    zipcodeUserInput = parseInt($('#zipcode-input').val());
+
+    var validZipcode = zipcode();
+
+    if (validZipcode === true){
+
+        //Glen and Alex: Run ALL the code
+
+    }else {
+        var errorText = $("<p>");
+        errorText.text("Please enter a valid 5 digit US zipcode");
+        errorText.addClass("card-text error-message");
+        $("#form-row").prepend(errorText);
+    }
+
     //https://developer.mapquest.com/user/me/plan 50000 free transactions per month
     //API Key B5fuwvmcvd8CPHiAvF1Owzo2FwrBAOA8
     //http://www.mapquestapi.com/geocoding/v1/address?key=B5fuwvmcvd8CPHiAvF1Owzo2FwrBAOA8&location=84095%2C+us&thumbMaps=false
@@ -31,8 +47,6 @@ $("#submit-button").on("click", function (event) {
             longitude = response1.results[0].locations[0].latLng.lng;
             predicthq();
         });
-
-
 
 
 
@@ -97,7 +111,18 @@ $("#submit-button").on("click", function (event) {
 
 
 
+function zipcode () {  
+    zipcode = /(^\d{5}$)|(^\d{5}-\d{4}$)/; 
+    zipcodeUserInput = zipcodeUserInput.toString(); 
 
+    if(zipcodeUserInput.match(zipcode))  
+        {  
+          return true;
+        }  
+        else{    
+            return false;
+        }  
+}
 
 
 

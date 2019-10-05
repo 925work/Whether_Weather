@@ -28,6 +28,10 @@ body {
     color: #ffffff;
 }
 
+/* Error Message */
+.error-message {
+    color: #D4145A;
+}
 /* Card */
 .card {
     margin: 1rem;
