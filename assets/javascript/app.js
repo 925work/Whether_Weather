@@ -18,6 +18,8 @@ $("#submit-button").on("click", function (event) {
     eventApiResponse = null;
     console.log(eventApiResponse);
 
+    zipcodeUserInput = parseInt($('#zipcode-input').val());
+
     var validZipcode = zipcode();
 
     if (validZipcode === true) {
@@ -26,8 +28,6 @@ $("#submit-button").on("click", function (event) {
         var latitude = "";
         var longitude = "";
         zipcodeArray = [];
-
-        zipcodeUserInput = parseInt($('#zipcode-input').val());
 
         //https://developer.mapquest.com/user/me/plan 50000 free transactions per month
         //API Key B5fuwvmcvd8CPHiAvF1Owzo2FwrBAOA8
@@ -116,6 +116,8 @@ $("#submit-button").on("click", function (event) {
         $("#form-row").append(errorText);
     }
 
+    validZipcode = null;
+
 });
 
 function dateChanger() {
@@ -142,7 +144,7 @@ function dateChanger() {
 
 
 function zipcode() {
-    zipcode = /(^\d{5}$)|(^\d{5}-\d{4}$)/;
+    var zipcode = /(^\d{5}$)|(^\d{5}-\d{4}$)/;
     zipcodeUserInput = zipcodeUserInput.toString();
 
     if (zipcodeUserInput.match(zipcode)) {
