@@ -248,7 +248,7 @@ function appendResponse() {
 
         var location = $("<div>");
         location.addClass("location card-header");
-        location.text("Location");  //Need to add Location
+        location.text(response2.results[i].entities[0].name + " " + response2.results[i].entities[0].formatted_address);  //Need to add Location
 
         var cardBody = $("<div>");
         cardBody.addClass('card-body');
@@ -273,12 +273,12 @@ function appendResponse() {
         cardText.text(response2.results[i].description); //source info from response.results.description
         cardText.addClass("card-text");
 
-        var googleSearch = response2.results[i].title.replace(/ /g, "+");
+        var googleSearch = response2.results[i].title.replace(/ /g, "+") + "+" + response2.results[i].entities[0].name.replace(/ /g, "+") + "+" + response2.results[i].entities[0].formatted_address.replace(/ /g, "+");
 
         var learnMore = $("<a>");
         learnMore.addClass("btn default-button"); //source btn color from type of weather
         learnMore.attr({
-            'href': 'https://www.google.com/search?q=' + googleSearch + '&btnI', //google search i'm feeling lucky event title
+            'href': 'https://www.google.com/search?q=' + googleSearch, //google search i'm feeling lucky event title
             'target': '_blank'
         })
 
