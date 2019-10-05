@@ -8,7 +8,7 @@ $("#submit-button").on("click", function (event) {
 
     event.preventDefault();
 
-    $("#error-message").empty();
+    $("#error-message").remove();
     $('#results-div').empty();
 
     dateChanger();
@@ -25,11 +25,6 @@ $("#submit-button").on("click", function (event) {
 
         var latitude = "";
         var longitude = "";
-        zipcodeArray = [];
-
-        var latitude = "";
-        var longitude = "";
-        zipcodeArray = [];
 
         //https://developer.mapquest.com/user/me/plan 50000 free transactions per month
         //API Key B5fuwvmcvd8CPHiAvF1Owzo2FwrBAOA8
@@ -40,7 +35,6 @@ $("#submit-button").on("click", function (event) {
             method: "GET"
         })
             .then(function (response1) {
-                console.log(queryZipCodeURL);
                 console.log(response1)
                 latitude = response1.results[0].locations[0].latLng.lat;
                 longitude = response1.results[0].locations[0].latLng.lng;
@@ -73,15 +67,12 @@ $("#submit-button").on("click", function (event) {
                 .then(function (response2) {
                     console.log(response2);
                     for (var i = 0; i < response2.results.length; i++) {
-                        console.log(response2.results[i].entities[0].formatted_address.split(",").pop().match(/\d+/g));
+                        // console.log(response2.results[i].entities[0].formatted_address.split(",").pop().match(/\d+/g));
                         console.log(response2.results[i].start);
                     }
                     eventApiResponse = response2;
                     appendResponse();
                 });
-
-
-            $('#data-input').val("");
         }
 
 
@@ -103,6 +94,7 @@ $("#submit-button").on("click", function (event) {
 
                 });
         }
+        weather();
 
         $([document.documentElement, document.body]).animate({
             scrollTop: $("#results-div").offset().top
@@ -119,6 +111,7 @@ $("#submit-button").on("click", function (event) {
     }
 
     validZipcode = null;
+    $('#data-input').val("");
 
 });
 
