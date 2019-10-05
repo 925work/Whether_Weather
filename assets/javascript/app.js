@@ -6,6 +6,8 @@ $("#submit-button").on("click", function (event) {
 
     event.preventDefault();
 
+    $("#error-message").empty();
+
     $('#results-div').empty();
 
     weatherApiResponse = null;
@@ -28,8 +30,11 @@ $("#submit-button").on("click", function (event) {
     }else {
         var errorText = $("<p>");
         errorText.text("Please enter a valid 5 digit US zipcode");
+        errorText.attr({
+            'id': 'error-message'
+        })
         errorText.addClass("card-text error-message");
-        $("#form-row").prepend(errorText);
+        $("#form-row").append(errorText);
     }
 
     //https://developer.mapquest.com/user/me/plan 50000 free transactions per month

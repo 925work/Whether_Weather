@@ -31,6 +31,7 @@ body {
 /* Error Message */
 .error-message {
     color: #D4145A;
+    padding-left: 1rem;
 }
 /* Card */
 .card {
