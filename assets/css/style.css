@@ -35,7 +35,7 @@ body {
 }
 /* Card */
 .card {
-    margin: 1rem;
+    margin-bottom: 2.7rem;
 }
 
 .location {
@@ -164,4 +164,20 @@ body {
 
 .cold-border {
     border-color: #A3A1FF;
+}
+
+/* Navbar */
+.copywrite {
+    width: 100%;
+    text-align: center;
+    color: #ffffff;
+}
+
+.navbar {
+    position: fixed;
+    margin-top: 15px;
+    width: 100%;
+    height: 40px;
+    bottom: 0;
+    background-color: #4FC3F7
 }
