@@ -11,103 +11,103 @@ $("#submit-button").on("click", function (event) {
 
     $("#error-message").empty();
     $('#results-div').empty();
-  
-   dateChanger();
+
+    dateChanger();
 
     weatherApiResponse = null;
     console.log(weatherApiResponse);
     eventApiResponse = null;
     console.log(eventApiResponse);
 
+    zipcodeUserInput = parseInt($('#zipcode-input').val());
     var validZipcode = zipcode();
 
-    if (validZipcode === true){
-
-  
-    var latitude = "";
-    var longitude = "";
-    zipcodeArray = [];
-      
-    zipcodeUserInput = parseInt($('#zipcode-input').val());
-
-    //https://developer.mapquest.com/user/me/plan 50000 free transactions per month
-    //API Key B5fuwvmcvd8CPHiAvF1Owzo2FwrBAOA8
-    //http://www.mapquestapi.com/geocoding/v1/address?key=B5fuwvmcvd8CPHiAvF1Owzo2FwrBAOA8&location=84095%2C+us&thumbMaps=false
-    var queryZipCodeURL = "https://www.mapquestapi.com/geocoding/v1/address?key=B5fuwvmcvd8CPHiAvF1Owzo2FwrBAOA8&location=" + zipcodeUserInput + "%2C+us&thumbMaps=false"
-    $.ajax({
-        url: queryZipCodeURL,
-        method: "GET"
-    })
-        .then(function (response1) {
-            console.log(queryZipCodeURL);
-            console.log(response1)
-            latitude = response1.results[0].locations[0].latLng.lat;
-            longitude = response1.results[0].locations[0].latLng.lng;
-            predicthq();
-        });
+    if (validZipcode === true) {
 
 
+        var latitude = "";
+        var longitude = "";
+        zipcodeArray = [];
 
-    //https://api.predicthq.com/{api-version}/{resource}
-    //Predict HQ
-    //Secret Client Key for Events APINtxSq481FOKSKJkrw_bhDvITG0H9lnRcn70jov_qDYTFbCNVA9HVnw
-    //Events API Key: 33PXWaaGfmpmXsDzo_JEY-lHTEeK0ltxc-5U8jZf
-    //Limit of 10000 calls per month  
-    ///events?local_rank_level=5&active.gte=2019-10-05&active.lte=2019-10-12&sort=local_rank&within=20mi%4040.558018,-111.965534
-    function predicthq() {
-        latitudeInt = parseFloat(latitude);
-        longitudeInt = parseFloat(longitude);
-        console.log(currentDate);
-        console.log(submitDate);
-        var queryEventsURL = "https://api.predicthq.com" + "/v1/events?local_rank_level=4&active.gte="+ currentDate + "&active.lte=" + submitDate + "&sort=local_rank&within=20mi%40" + latitudeInt + "," + longitudeInt;
 
-        console.log(queryEventsURL);
-        console.log(latitude);
-        console.log(longitude);
+        //https://developer.mapquest.com/user/me/plan 50000 free transactions per month
+        //API Key B5fuwvmcvd8CPHiAvF1Owzo2FwrBAOA8
+        //http://www.mapquestapi.com/geocoding/v1/address?key=B5fuwvmcvd8CPHiAvF1Owzo2FwrBAOA8&location=84095%2C+us&thumbMaps=false
+        var queryZipCodeURL = "https://www.mapquestapi.com/geocoding/v1/address?key=B5fuwvmcvd8CPHiAvF1Owzo2FwrBAOA8&location=" + zipcodeUserInput + "%2C+us&thumbMaps=false"
         $.ajax({
-            url: queryEventsURL,
-            method: "GET",
-            headers: { "Authorization": "Bearer" + " 33PXWaaGfmpmXsDzo_JEY-lHTEeK0ltxc-5U8jZf" }
-        })
-            .then(function (response2) {
-                console.log(response2);
-                for(var i = 0; i < response2.results.length; i++){
-                    console.log(response2.results[i].entities[0].formatted_address.split(",").pop().match(/\d+/g));
-                    console.log(response2.results[i].start);
-                }
-                eventApiResponse = response2;
-                appendResponse();
-            });
-
-            
-        $('#data-input').val("");
-    }
-
-
-
-
-    //Open Weather API Key: 094564d4319b1a4807606b1734534529
-    //Limit of 60 calls per minute
-    //5 day forecast is available at any location or city. It includes weather data every 3 hours. Forecast is available in JSON or XML format.
-    function weather() {
-        var queryWeatherURL = "https://api.openweathermap.org/data/2.5/forecast?zip=" + zipcodeUserInput + ",us&APPID=e66a1bd808ecea1b18d6edc1a56dece6"
-        $.ajax({
-            url: queryWeatherURL,
+            url: queryZipCodeURL,
             method: "GET"
         })
-            .then(function (response3) {
-                console.log(queryWeatherURL);
-                console.log(response3);
-                weatherApiResponse = response3;
-                
+            .then(function (response1) {
+                console.log(queryZipCodeURL);
+                console.log(response1)
+                latitude = response1.results[0].locations[0].latLng.lat;
+                longitude = response1.results[0].locations[0].latLng.lng;
+                predicthq();
             });
-    }
+
+
+
+        //https://api.predicthq.com/{api-version}/{resource}
+        //Predict HQ
+        //Secret Client Key for Events APINtxSq481FOKSKJkrw_bhDvITG0H9lnRcn70jov_qDYTFbCNVA9HVnw
+        //Events API Key: 33PXWaaGfmpmXsDzo_JEY-lHTEeK0ltxc-5U8jZf
+        //Limit of 10000 calls per month  
+        ///events?local_rank_level=5&active.gte=2019-10-05&active.lte=2019-10-12&sort=local_rank&within=20mi%4040.558018,-111.965534
+        function predicthq() {
+            latitudeInt = parseFloat(latitude);
+            longitudeInt = parseFloat(longitude);
+            console.log(currentDate);
+            console.log(submitDate);
+            var queryEventsURL = "https://api.predicthq.com" + "/v1/events?local_rank_level=4&active.gte=" + currentDate + "&active.lte=" + submitDate + "&sort=local_rank&within=20mi%40" + latitudeInt + "," + longitudeInt;
+
+            console.log(queryEventsURL);
+            console.log(latitude);
+            console.log(longitude);
+            $.ajax({
+                url: queryEventsURL,
+                method: "GET",
+                headers: { "Authorization": "Bearer" + " 33PXWaaGfmpmXsDzo_JEY-lHTEeK0ltxc-5U8jZf" }
+            })
+                .then(function (response2) {
+                    console.log(response2);
+                    for (var i = 0; i < response2.results.length; i++) {
+                        console.log(response2.results[i].entities[0].formatted_address.split(",").pop().match(/\d+/g));
+                        console.log(response2.results[i].start);
+                    }
+                    eventApiResponse = response2;
+                    appendResponse();
+                });
+
+
+            $('#data-input').val("");
+        }
+
+
+
+
+        //Open Weather API Key: 094564d4319b1a4807606b1734534529
+        //Limit of 60 calls per minute
+        //5 day forecast is available at any location or city. It includes weather data every 3 hours. Forecast is available in JSON or XML format.
+        function weather() {
+            var queryWeatherURL = "https://api.openweathermap.org/data/2.5/forecast?zip=" + zipcodeUserInput + ",us&APPID=e66a1bd808ecea1b18d6edc1a56dece6"
+            $.ajax({
+                url: queryWeatherURL,
+                method: "GET"
+            })
+                .then(function (response3) {
+                    console.log(queryWeatherURL);
+                    console.log(response3);
+                    weatherApiResponse = response3;
+
+                });
+        }
 
         $([document.documentElement, document.body]).animate({
             scrollTop: $("#results-div").offset().top
         }, 3000);
 
-    }else {
+    } else {
         var errorText = $("<p>");
         errorText.text("Please enter a valid 5 digit US zipcode");
         errorText.attr({
@@ -119,7 +119,7 @@ $("#submit-button").on("click", function (event) {
 
 });
 
-function dateChanger (){
+function dateChanger() {
     var startdate = moment();
     var new_date = moment(startdate, "DD-MM-YYYY").add(4, "days");
     var thisDate = moment(startdate, "DD-MM-YYYY");
@@ -142,17 +142,16 @@ function dateChanger (){
 
 
 
-function zipcode () {  
-    zipcode = /(^\d{5}$)|(^\d{5}-\d{4}$)/; 
-    zipcodeUserInput = zipcodeUserInput.toString(); 
+function zipcode() {
+    var zipcode = /(^\d{5}$)|(^\d{5}-\d{4}$)/;
+    zipcodeUserInput = zipcodeUserInput.toString();
 
-    if(zipcodeUserInput.match(zipcode))  
-        {  
-          return true;
-        }  
-        else{    
-            return false;
-        }  
+    if (zipcodeUserInput.match(zipcode)) {
+        return true;
+    }
+    else {
+        return false;
+    }
 }
 
 
