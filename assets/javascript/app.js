@@ -2,6 +2,7 @@ var weatherApiResponse;
 var eventApiResponse;
 var submitDate;
 var currentDate;
+var zipcodeArray = [];
 
 $("#submit-button").on("click", function (event) {
     dateChanger();
@@ -14,7 +15,6 @@ $("#submit-button").on("click", function (event) {
 
     var latitude = "";
     var longitude = "";
-    zipcodeArray = [];
     
     event.preventDefault();
     var zipcodeUserInput = parseInt($('#zipcode-input').val());
@@ -64,9 +64,12 @@ $("#submit-button").on("click", function (event) {
                 for(var i = 0; i < response2.results.length; i++){
                     console.log(response2.results[i].entities[0].formatted_address);
                     console.log(response2.results[i].start);
+                    zipcodeArray.push(response2.results[i].entities[0].formatted_address.split(",").pop().match(/\d+/g));
                 }
                 eventApiResponse = response2;
                 appendResponse();
+                console.log(zipcodeArray);
+                weather();
             });
 
             
@@ -81,6 +84,7 @@ $("#submit-button").on("click", function (event) {
     //5 day forecast is available at any location or city. It includes weather data every 3 hours. Forecast is available in JSON or XML format.
     function weather() {
         var queryWeatherURL = "https://api.openweathermap.org/data/2.5/forecast?zip=" + zipcodeUserInput + ",us&APPID=e66a1bd808ecea1b18d6edc1a56dece6"
+        
         $.ajax({
             url: queryWeatherURL,
             method: "GET"
