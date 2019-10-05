@@ -22,11 +22,7 @@ $("#submit-button").on("click", function (event) {
     zipcodeUserInput = parseInt($('#zipcode-input').val());
     var validZipcode = zipcode();
 
-    if (validZipcode === true) {
-
-        var latitude = "";
-        var longitude = "";
-        zipcodeArray = [];
+    if (validZipcode === true) {    
 
         var latitude = "";
         var longitude = "";
@@ -74,7 +70,7 @@ $("#submit-button").on("click", function (event) {
                     console.log(response2);
                     for (var i = 0; i < response2.results.length; i++) {
                         console.log(response2.results[i].entities[0].formatted_address.split(",").pop().match(/\d+/g));
-                        console.log(response2.results[i].start);
+                        console.log(response2.results[i].start.replace(/T/g,' ').replace(/Z/g,' '));
                     }
                     eventApiResponse = response2;
                     appendResponse();
@@ -264,7 +260,7 @@ function appendResponse() {
         cardCatagory.addClass("card-text");
 
         var cardStart = $("<p>");
-        cardStart.text(response2.results[i].start); //response.start
+        cardStart.text(response2.results[i].start.replace(/T/g,' ').replace(/Z/g,' ')); //response.start
         cardStart.addClass("card-text");
 
         var cardWeather = $("<p>");
