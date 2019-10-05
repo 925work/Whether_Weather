@@ -1,50 +1,39 @@
 var weatherApiResponse;
 var eventApiResponse;
+
 var zipcodeUserInput;
+var submitDate;
+var currentDate;
 
 $("#submit-button").on("click", function (event) {
 
     event.preventDefault();
 
     $("#error-message").empty();
-
     $('#results-div').empty();
+  
+   dateChanger();
 
     weatherApiResponse = null;
     console.log(weatherApiResponse);
     eventApiResponse = null;
     console.log(eventApiResponse);
 
-    var latitude = "";
-    var longitude = "";
-    zipcodeArray = [];
-
-    zipcodeUserInput = parseInt($('#zipcode-input').val());
-
     var validZipcode = zipcode();
 
     if (validZipcode === true){
 
-        //Glen and Alex: Run ALL the code
-
-        $([document.documentElement, document.body]).animate({
-            scrollTop: $("#results-div").offset().top
-        }, 3000);
-
-    }else {
-        var errorText = $("<p>");
-        errorText.text("Please enter a valid 5 digit US zipcode");
-        errorText.attr({
-            'id': 'error-message'
-        })
-        errorText.addClass("card-text error-message");
-        $("#form-row").append(errorText);
-    }
+  
+    var latitude = "";
+    var longitude = "";
+    zipcodeArray = [];
+      
+    zipcodeUserInput = parseInt($('#zipcode-input').val());
 
     //https://developer.mapquest.com/user/me/plan 50000 free transactions per month
     //API Key B5fuwvmcvd8CPHiAvF1Owzo2FwrBAOA8
     //http://www.mapquestapi.com/geocoding/v1/address?key=B5fuwvmcvd8CPHiAvF1Owzo2FwrBAOA8&location=84095%2C+us&thumbMaps=false
-    var queryZipCodeURL = "http://www.mapquestapi.com/geocoding/v1/address?key=B5fuwvmcvd8CPHiAvF1Owzo2FwrBAOA8&location=" + zipcodeUserInput + "%2C+us&thumbMaps=false"
+    var queryZipCodeURL = "https://www.mapquestapi.com/geocoding/v1/address?key=B5fuwvmcvd8CPHiAvF1Owzo2FwrBAOA8&location=" + zipcodeUserInput + "%2C+us&thumbMaps=false"
     $.ajax({
         url: queryZipCodeURL,
         method: "GET"
@@ -64,11 +53,13 @@ $("#submit-button").on("click", function (event) {
     //Secret Client Key for Events APINtxSq481FOKSKJkrw_bhDvITG0H9lnRcn70jov_qDYTFbCNVA9HVnw
     //Events API Key: 33PXWaaGfmpmXsDzo_JEY-lHTEeK0ltxc-5U8jZf
     //Limit of 10000 calls per month  
+    ///events?local_rank_level=5&active.gte=2019-10-05&active.lte=2019-10-12&sort=local_rank&within=20mi%4040.558018,-111.965534
     function predicthq() {
         latitudeInt = parseFloat(latitude);
         longitudeInt = parseFloat(longitude);
-
-        var queryEventsURL = "https://api.predicthq.com" + "/v1/events/?end.lte=2019-10-06&offset=10&within=30mi%40" + latitudeInt + "%2C" + longitudeInt;
+        console.log(currentDate);
+        console.log(submitDate);
+        var queryEventsURL = "https://api.predicthq.com" + "/v1/events?local_rank_level=4&active.gte="+ currentDate + "&active.lte=" + submitDate + "&sort=local_rank&within=20mi%40" + latitudeInt + "," + longitudeInt;
 
         console.log(queryEventsURL);
         console.log(latitude);
@@ -81,7 +72,7 @@ $("#submit-button").on("click", function (event) {
             .then(function (response2) {
                 console.log(response2);
                 for(var i = 0; i < response2.results.length; i++){
-                    console.log(response2.results[i].entities[0].formatted_address);
+                    console.log(response2.results[i].entities[0].formatted_address.split(",").pop().match(/\d+/g));
                     console.log(response2.results[i].start);
                 }
                 eventApiResponse = response2;
@@ -107,13 +98,44 @@ $("#submit-button").on("click", function (event) {
             .then(function (response3) {
                 console.log(queryWeatherURL);
                 console.log(response3);
-                weatherApiResponse = response3
+                weatherApiResponse = response3;
                 
             });
     }
+
+        $([document.documentElement, document.body]).animate({
+            scrollTop: $("#results-div").offset().top
+        }, 3000);
+
+    }else {
+        var errorText = $("<p>");
+        errorText.text("Please enter a valid 5 digit US zipcode");
+        errorText.attr({
+            'id': 'error-message'
+        })
+        errorText.addClass("card-text error-message");
+        $("#form-row").append(errorText);
+    }
+
 });
 
+function dateChanger (){
+    var startdate = moment();
+    var new_date = moment(startdate, "DD-MM-YYYY").add(4, "days");
+    var thisDate = moment(startdate, "DD-MM-YYYY");
 
+    var day = new_date.format('DD');
+    var month = new_date.format('MM');
+    var year = new_date.format('YYYY');
+
+    var day1 = thisDate.format('DD');
+    var month1 = thisDate.format('MM');
+    var year1 = thisDate.format('YYYY');
+
+    currentDate = year1 + "-" + month1 + "-" + day1;
+    submitDate = year + "-" + month + "-" + day;
+    console.log(submitDate);
+}
 
 
 
