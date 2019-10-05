@@ -3,6 +3,7 @@ var eventApiResponse;
 var zipcodeUserInput;
 var submitDate;
 var currentDate;
+var zipcodeArray = [];
 
 $("#submit-button").on("click", function (event) {
 
@@ -28,7 +29,6 @@ $("#submit-button").on("click", function (event) {
         var latitude = "";
         var longitude = "";
         zipcodeArray = [];
-
         //https://developer.mapquest.com/user/me/plan 50000 free transactions per month
         //API Key B5fuwvmcvd8CPHiAvF1Owzo2FwrBAOA8
         //http://www.mapquestapi.com/geocoding/v1/address?key=B5fuwvmcvd8CPHiAvF1Owzo2FwrBAOA8&location=84095%2C+us&thumbMaps=false
