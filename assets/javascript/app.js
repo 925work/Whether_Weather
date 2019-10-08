@@ -124,7 +124,7 @@ $("#submit-button").on("click", function (event) {
     }
 
     validZipcode = null;
-    $('#data-input').val("");
+    $('#zipcode-input').val("");
 
 });
 
@@ -163,28 +163,28 @@ function zipcode() {
     }
 }
 
-function secondWeather() {
-    var queryWeatherURL = "https://api.weatherbit.io/v2.0/forecast/daily?&postal_code=" + zipCodeUserInput + "&country=US&key=5293fa4c3ef1453b9472cda31e27e81b"
-    $.ajax({
-        url: queryWeatherURL,
-        method: "GET"
-    })
-        .then(function (response3) {
-            console.log(queryWeatherURL);
-            console.log(response3);
-            weatherApiResponse = response3.data;
-            console.log(weatherApiResponse);
-            for (var i = 0; i < 5; i++){
-                weatherApiArrObj.push(weatherApiResponse[i].valid_date);
-                console.log(weatherApiResponse[i].datetime);
-                console.log(parseInt((weatherApiResponse[i].high_temp)*(9/5)+32));
-                console.log(parseInt((weatherApiResponse[i].low_temp*(9/5)+32)));
-                console.log(parseInt((weatherApiResponse[i].temp*(9/5)+32)));
-                console.log(weatherApiResponse[i].weather.description);
-            }
-            console.log(weatherApiArrObj);
-        })
-    }
+// function secondWeather() {
+//     var queryWeatherURL = "https://api.weatherbit.io/v2.0/forecast/daily?&postal_code=" + zipCodeUserInput + "&country=US&key=5293fa4c3ef1453b9472cda31e27e81b"
+//     $.ajax({
+//         url: queryWeatherURL,
+//         method: "GET"
+//     })
+//         .then(function (response3) {
+//             console.log(queryWeatherURL);
+//             console.log(response3);
+//             weatherApiResponse = response3.data;
+//             console.log(weatherApiResponse);
+//             for (var i = 0; i < 5; i++){
+//                 weatherApiArrObj.push(weatherApiResponse[i].valid_date);
+//                 console.log(weatherApiResponse[i].datetime);
+//                 console.log(parseInt((weatherApiResponse[i].high_temp)*(9/5)+32));
+//                 console.log(parseInt((weatherApiResponse[i].low_temp*(9/5)+32)));
+//                 console.log(parseInt((weatherApiResponse[i].temp*(9/5)+32)));
+//                 console.log(weatherApiResponse[i].weather.description);
+//             }
+//             console.log(weatherApiArrObj);
+//         })
+//     }
 
 
 
@@ -335,19 +335,20 @@ function appendResponse() {
         cardStart.addClass("card-text");
 
         var cardWeather = $("<p>");
-        cardWeather.text("filler Weather" + degree); //response from weather API
+        cardWeather.text((parseInt((weatherApiResponse[weatherIndex].main.temp-273)*1.8)+23) + degree); //response from weather API
         cardWeather.addClass("card-text temp");
 
-        var highTemp = $("<p>");
-        highTemp.text("High Temp: " + "API" + degree); //response from 2nd weather API
-        highTemp.addClass("card-text high-temp");
+        // var highTemp = $("<p>");
+        // highTemp.text(((weatherApiResponse[weatherIndex].main.temp_max-273)*1.8)+23 + degree); //response from 2nd weather API
+        // highTemp.addClass("card-text high-temp");
 
-        var lowTemp = $("<p>");
-        lowTemp.text("Low Temp: " + "API" + degree); //response from 2nd API
-        lowTemp.addClass("card-text low-temp");
+        // var lowTemp = $("<p>");
+        // lowTemp.text(((weatherApiResponse[weatherIndex].main.temp_min-273)*1.8)+23 + degree); //response from 2nd API
+        // lowTemp.addClass("card-text low-temp");
 
         var weatherDiscription = $("<p>");
-        weatherDiscription.text("Weather Disc API"); //response from 2nd weather API
+        weatherDiscription.text(weatherApiResponse[weatherIndex].weather[0].description); //response from 2nd weather API
+        console.log(weatherApiResponse[weatherIndex].weather[0])
         weatherDiscription.addClass("card-text weather-discription");
 
         var cardText = $("<p>");
@@ -374,7 +375,7 @@ function appendResponse() {
         learnMore.text('Learn More');
         directions.text('Directions');
 
-        cardBody.append(cardTitle, cardStart, cardText, cardWeather, highTemp, lowTemp, weatherDiscription, learnMore, directions);
+        cardBody.append(cardTitle, cardStart, cardText, cardWeather, weatherDiscription, learnMore, directions); //highTemp, lowTemp,
         cardDiv.append(location, cardBody);
         mainDiv.append(cardDiv);
 
