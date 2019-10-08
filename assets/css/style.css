@@ -59,6 +59,27 @@ body {
     font-size: 1.5rem;
 }
 
+.high-temp {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-weight: bold;
+    font-variant: small-caps;
+    color: #9E9E9E;
+}
+
+.low-temp {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-weight: bold;
+    font-variant: small-caps;
+    color: #9E9E9E;
+}
+
+.weather-discription {
+    color: #9E9E9E;
+
+}
+
 /* Default Button */
 .default-button {
     background-color: #4FC3F7;
@@ -85,6 +106,7 @@ body {
 
 .default-border {
     border-color: #4FC3F7;
+    border-width: 2px;
 }
 
 /* Hot Button */
@@ -113,6 +135,7 @@ body {
 
 .hot-border {
     border-color:#ED1C24;
+    border-width: 2px;
 }
 
 /* Warm Button */
@@ -141,6 +164,7 @@ body {
 
 .warm-border {
     border-color: #009E00;
+    border-width: 2px;
 }
 
 /* Cold Button */
@@ -169,6 +193,7 @@ body {
 
 .cold-border {
     border-color: #A3A1FF;
+    border-width: 2px;
 }
 
 /* Navbar */
