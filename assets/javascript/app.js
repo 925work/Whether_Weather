@@ -77,7 +77,7 @@ $("#submit-button").on("click", function (event) {
                         console.log(response2.results[i].start);
                     }
                     eventApiResponse = response2;
-                    appendResponse();
+                    weather();
                 });
         }
 
@@ -98,13 +98,15 @@ $("#submit-button").on("click", function (event) {
                     console.log(response3);
                     weatherApiResponse = response3.list;
                     console.log(weatherApiResponse);
-                    for (var i = 0; i < weatherApiResponse.length; i++){
+                    for (var i = 0; i < weatherApiResponse.length; i++) {
                         weatherApiArrObj.push(weatherApiResponse[i].dt_txt);
                     }
                     console.log(weatherApiArrObj);
+                    appendResponse();
                 });
         }
-        weather();
+
+
 
         $([document.documentElement, document.body]).animate({
             scrollTop: $("#results-div").offset().top
@@ -161,9 +163,51 @@ function zipcode() {
 }
 
 
+function matchDate(index) {
+    var eventDate = eventApiResponse.results[index].start.replace(/T/g, ' ').replace(/Z/g, ' ');
+    console.log(eventDate)
+    function dateMatcher(z) {
+        var eventMath = eventDate.split(/[\s:]+/);
+        var addHour = parseInt(eventMath[1]) + z;
+        if(addHour === -1){
+            addHour = 23;
+        }
+        function between(x, min, max) {
+            return x >= min && x <= max;
+        }
+        var strAddHour;
+        if (between(addHour, 0, 9)) {
+            strAddHour = addHour.toString();
+            strAddHour = "0" + strAddHour;
+        } else {
+            strAddHour = addHour.toString();
+        }
+        console.log(strAddHour);
+        eventMath.splice(1, 1, strAddHour);
+        console.log(eventMath); //0: Date 1: hour 2: Minutes 3: seconds
+        var eventFirstHalf = eventMath[0];
+        var eventSecondHalf = eventMath[1] + ":00:00";
+        var eventStr = eventFirstHalf + " " + eventSecondHalf;
 
+        return eventStr;
+    }
 
+    var trueDate = eventDate.split(/[\s:]+/);
+    var thisDate = trueDate[0] + " " + trueDate[1] + ":00:00"
+    var eventDateOne = dateMatcher(1);
+    var eventDateTwo = dateMatcher(-1);
+    console.log(eventDateOne);
+    console.log(eventDateTwo);
+    console.log(thisDate);
 
+    console.log(weatherApiArrObj.length)
+    for (var i = 0; i < weatherApiArrObj.length; i++) {
+        if (thisDate === weatherApiArrObj[i] || eventDateOne === weatherApiArrObj[i] || eventDateTwo === weatherApiArrObj[i]) {
+            console.log(i);
+            console.log(eventDate);
+        }
+    };
+}
 
 
 
@@ -227,16 +271,10 @@ function zipcode() {
 
 
 
-// Glen's code starts here
 
-// $(document).on('click', '#submit-button', function () {
-//     zipcodeUserInput = $('#data-input').val();
-//     // QueryURL stuff from alex in here
 
 
-//     appendResponse();  //function to push information to the HTML
-//     $('#data-input').val("");
-// })
+
 
 function appendResponse() {
     var response2 = eventApiResponse;
@@ -267,7 +305,7 @@ function appendResponse() {
         cardCatagory.addClass("card-text");
 
         var cardStart = $("<p>");
-        cardStart.text(response2.results[i].start.replace(/T/g,' ').replace(/Z/g,' ')); //response.start
+        cardStart.text(response2.results[i].start.replace(/T/g, ' ').replace(/Z/g, ' ')); //response.start
         cardStart.addClass("card-text");
 
         var cardWeather = $("<p>");
@@ -301,6 +339,8 @@ function appendResponse() {
         cardBody.append(cardTitle, cardStart, cardText, cardWeather, learnMore, directions);
         cardDiv.append(location, cardBody);
         mainDiv.append(cardDiv);
+
+        matchDate(i);
 
         $('#results-div').prepend(mainDiv);
     }
