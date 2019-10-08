@@ -62,6 +62,7 @@ body {
 /* Default Button */
 .default-button {
     background-color: #4FC3F7;
+    margin-right: 0.5rem;
     color: #ffffff;
 }
 
@@ -73,13 +74,13 @@ body {
 
 .default-button-reverse {
     background-color: #ffffff;
-    color: #4FC3F7;
+    color: #4FC3F7!important;
     border-color: #4FC3F7
 }
 
 .default-button-reverse:hover {
     background-color: #4FC3F7;
-    color: #ffffff;
+    color: #ffffff!important;
 }
 
 .default-border {
@@ -89,6 +90,7 @@ body {
 /* Hot Button */
 .hot-button {
     background-color: #ED1C24;
+    margin-right: 0.5rem;
     color: #ffffff;
 }
 
@@ -116,6 +118,7 @@ body {
 /* Warm Button */
 .warm-button {
     background-color: #009E00;
+    margin-right: 0.5rem;
     color: #ffffff;
 }
 
@@ -143,6 +146,7 @@ body {
 /* Cold Button */
 .cold-button {
     background-color: #A3A1FF;
+    margin-right: 0.5rem;
     color: #ffffff;
 }
 

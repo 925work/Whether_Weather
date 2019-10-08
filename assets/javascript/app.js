@@ -282,12 +282,20 @@ function appendResponse() {
         learnMore.attr({
             'href': 'https://www.google.com/search?q=' + googleSearch, //google search i'm feeling lucky event title
             'target': '_blank'
+        });
+
+        var directions = $("<a>");
+        directions.addClass("btn default-button-reverse");
+        directions.attr({
+            'href': "https://www.google.com/maps/place/" + response2.results[i].entities[0].formatted_address.replace(/ /g, "+"),
+            'target': '_blank'
         })
 
         //Need to add Directions button (.default-button-reverse)
         learnMore.text('Learn More');
+        directions.text('Directions');
 
-        cardBody.append(cardTitle, cardStart, cardText, cardWeather, learnMore);
+        cardBody.append(cardTitle, cardStart, cardText, cardWeather, learnMore, directions);
         cardDiv.append(location, cardBody);
         mainDiv.append(cardDiv);
 

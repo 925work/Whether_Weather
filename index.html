@@ -9,7 +9,6 @@
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
 
     <link rel="stylesheet" href="assets/css/reset.css">
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -36,8 +35,8 @@
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <form class="form-inline my-2 my-lg-0">
                         <input class="form-control mr-sm-2" type="number" placeholder="Zipcode" aria-label="Zipcode"
-                            id="zipcode-input" inputmode="numeric" pattern="^(?(^00000(|-0000))|(\d{5}(|-\d{4})))$">
-                        <input type="submit" class="btn btn-outline-light my-2 my-sm-0" name="Search"
+                            id="zipcode-input" inputmode="numeric" pattern="/(^\d{5}$)|(^\d{5}-\d{4}$)/">
+                        <input type="submit" class="btn btn-outline-light my-2 my-sm-1" name="Search"
                             id="submit-button">
                     </form>
                 </div>
