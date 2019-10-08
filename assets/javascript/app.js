@@ -85,10 +85,10 @@ $("#submit-button").on("click", function (event) {
 
 
         //Open Weather API Key: 094564d4319b1a4807606b1734534529
-        //Limit of 60 calls per minute
+        //Limit of 60 calls per minute weatherbit api = 1000 calls/month
         //5 day forecast is available at any location or city. It includes weather data every 3 hours. Forecast is available in JSON or XML format.
         function weather() {
-            var queryWeatherURL = "https://api.openweathermap.org/data/2.5/forecast?zip=" + zipcodeUserInput + ",us&APPID=e66a1bd808ecea1b18d6edc1a56dece6"
+            var queryWeatherURL = "https://api.weatherbit.io/v2.0/forecast/daily?&postal_code=" + zipcodeUserInput + "&country=US&key=5293fa4c3ef1453b9472cda31e27e81b"
             $.ajax({
                 url: queryWeatherURL,
                 method: "GET"
@@ -96,10 +96,15 @@ $("#submit-button").on("click", function (event) {
                 .then(function (response3) {
                     console.log(queryWeatherURL);
                     console.log(response3);
-                    weatherApiResponse = response3.list;
+                    weatherApiResponse = response3.data;
                     console.log(weatherApiResponse);
-                    for (var i = 0; i < weatherApiResponse.length; i++){
-                        weatherApiArrObj.push(weatherApiResponse[i].dt_txt);
+                    for (var i = 0; i < 5; i++){
+                        weatherApiArrObj.push(weatherApiResponse[i].valid_date);
+                        console.log(weatherApiResponse[i].datetime);
+                        console.log(parseInt((weatherApiResponse[i].high_temp)*(9/5)+32));
+                        console.log(parseInt((weatherApiResponse[i].low_temp*(9/5)+32)));
+                        console.log(parseInt((weatherApiResponse[i].temp*(9/5)+32)));
+                        console.log(weatherApiResponse[i].weather.description);
                     }
                     console.log(weatherApiArrObj);
                 });
