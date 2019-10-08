@@ -35,7 +35,7 @@
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <form class="form-inline my-2 my-lg-0">
                         <input class="form-control mr-sm-2" type="number" placeholder="Zipcode" aria-label="Zipcode"
-                            id="zipcode-input" inputmode="numeric" pattern="^(?(^00000(|-0000))|(\d{5}(|-\d{4})))$">
+                            id="zipcode-input" inputmode="numeric" pattern="/(^\d{5}$)|(^\d{5}-\d{4}$)/">
                         <input type="submit" class="btn btn-outline-light my-2 my-sm-0" name="Search"
                             id="submit-button">
                     </form>
