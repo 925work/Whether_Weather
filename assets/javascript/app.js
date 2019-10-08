@@ -4,6 +4,7 @@ var eventApiResponse;
 var zipcodeUserInput;
 var submitDate;
 var currentDate;
+var zipcodeArray = [];
 
 $("#submit-button").on("click", function (event) {
 
