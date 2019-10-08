@@ -203,10 +203,10 @@ function matchDate(index) {
     console.log(weatherApiArrObj.length)
     for (var i = 0; i < weatherApiArrObj.length; i++) {
         if (thisDate === weatherApiArrObj[i] || eventDateOne === weatherApiArrObj[i] || eventDateTwo === weatherApiArrObj[i]) {
-            console.log(i);
-            console.log(eventDate);
+           return i;
         }
     };
+    return "No Weather";
 }
 
 
@@ -282,6 +282,7 @@ function appendResponse() {
 
     //for loop for card results
     for (var i = 0; i < data.length; i++) {
+        var weatherIndex = matchDate(i); // Returns index number of weatherApiArrObj to use for weatherApiResponse 
 
         var mainDiv = $("<div>");
         mainDiv.addClass("col-12");
@@ -340,7 +341,7 @@ function appendResponse() {
         cardDiv.append(location, cardBody);
         mainDiv.append(cardDiv);
 
-        matchDate(i);
+        
 
         $('#results-div').prepend(mainDiv);
     }
