@@ -1,4 +1,5 @@
 var weatherApiResponse;
+var weatherApiArrObj = [];
 var eventApiResponse;
 var zipcodeUserInput;
 var submitDate;
@@ -18,6 +19,7 @@ $("#submit-button").on("click", function (event) {
     console.log(weatherApiResponse);
     eventApiResponse = null;
     console.log(eventApiResponse);
+    weatherApiArrObj = [];
 
     zipcodeUserInput = parseInt($('#zipcode-input').val());
     var validZipcode = zipcode();
@@ -26,11 +28,7 @@ $("#submit-button").on("click", function (event) {
 
         var latitude = "";
         var longitude = "";
-        zipcodeArray = [];
-        //Why do we have this twice?
-        var latitude = "";
-        var longitude = "";
-        zipcodeArray = [];
+
         //https://developer.mapquest.com/user/me/plan 50000 free transactions per month
         //API Key B5fuwvmcvd8CPHiAvF1Owzo2FwrBAOA8
         //http://www.mapquestapi.com/geocoding/v1/address?key=B5fuwvmcvd8CPHiAvF1Owzo2FwrBAOA8&location=84095%2C+us&thumbMaps=false
@@ -40,7 +38,6 @@ $("#submit-button").on("click", function (event) {
             method: "GET"
         })
             .then(function (response1) {
-                console.log(queryZipCodeURL);
                 console.log(response1)
                 latitude = response1.results[0].locations[0].latLng.lat;
                 longitude = response1.results[0].locations[0].latLng.lng;
@@ -73,15 +70,12 @@ $("#submit-button").on("click", function (event) {
                 .then(function (response2) {
                     console.log(response2);
                     for (var i = 0; i < response2.results.length; i++) {
-                        console.log(response2.results[i].entities[0].formatted_address.split(",").pop().match(/\d+/g));
+                        // console.log(response2.results[i].entities[0].formatted_address.split(",").pop().match(/\d+/g));
                         console.log(response2.results[i].start);
                     }
                     eventApiResponse = response2;
                     appendResponse();
                 });
-
-
-            $('#data-input').val("");
         }
 
 
@@ -99,10 +93,15 @@ $("#submit-button").on("click", function (event) {
                 .then(function (response3) {
                     console.log(queryWeatherURL);
                     console.log(response3);
-                    weatherApiResponse = response3;
-
+                    weatherApiResponse = response3.list;
+                    console.log(weatherApiResponse);
+                    for (var i = 0; i < weatherApiResponse.length; i++){
+                        weatherApiArrObj.push(weatherApiResponse[i].dt_txt);
+                    }
+                    console.log(weatherApiArrObj);
                 });
         }
+        weather();
 
         $([document.documentElement, document.body]).animate({
             scrollTop: $("#results-div").offset().top
@@ -119,6 +118,7 @@ $("#submit-button").on("click", function (event) {
     }
 
     validZipcode = null;
+    $('#data-input').val("");
 
 });
 
