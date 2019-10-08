@@ -24,10 +24,12 @@ $("#submit-button").on("click", function (event) {
     zipcodeUserInput = parseInt($('#zipcode-input').val());
     var validZipcode = zipcode();
 
+
     if (validZipcode === true) {
 
         var latitude = "";
         var longitude = "";
+
 
         //https://developer.mapquest.com/user/me/plan 50000 free transactions per month
         //API Key B5fuwvmcvd8CPHiAvF1Owzo2FwrBAOA8
@@ -70,6 +72,7 @@ $("#submit-button").on("click", function (event) {
                 .then(function (response2) {
                     console.log(response2);
                     for (var i = 0; i < response2.results.length; i++) {
+
                         // console.log(response2.results[i].entities[0].formatted_address.split(",").pop().match(/\d+/g));
                         console.log(response2.results[i].start);
                     }
@@ -264,7 +267,7 @@ function appendResponse() {
         cardCatagory.addClass("card-text");
 
         var cardStart = $("<p>");
-        cardStart.text(response2.results[i].start); //response.start
+        cardStart.text(response2.results[i].start.replace(/T/g,' ').replace(/Z/g,' ')); //response.start
         cardStart.addClass("card-text");
 
         var cardWeather = $("<p>");
