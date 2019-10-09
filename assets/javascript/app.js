@@ -228,7 +228,6 @@ function appendResponse() {
 
         var weatherDiscription = $("<p>");
         weatherDiscription.text(weatherApiResponse[weatherIndex].weather[0].description); 
-        console.log(weatherApiResponse[weatherIndex].weather[0])
         weatherDiscription.addClass("card-text weather-discription");
 
         var cardText = $("<p>");
