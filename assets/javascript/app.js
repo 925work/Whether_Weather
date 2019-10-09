@@ -17,9 +17,7 @@ $("#submit-button").on("click", function (event) {
     dateChanger();
 
     weatherApiResponse = null;
-    console.log(weatherApiResponse);
     eventApiResponse = null;
-    console.log(eventApiResponse);
     weatherApiArrObj = [];
 
     zipcodeUserInput = parseInt($('#zipcode-input').val());
@@ -41,7 +39,6 @@ $("#submit-button").on("click", function (event) {
             method: "GET"
         })
             .then(function (response1) {
-                console.log(response1)
                 latitude = response1.results[0].locations[0].latLng.lat;
                 longitude = response1.results[0].locations[0].latLng.lng;
                 predicthq();
@@ -58,25 +55,16 @@ $("#submit-button").on("click", function (event) {
         function predicthq() {
             latitudeInt = parseFloat(latitude);
             longitudeInt = parseFloat(longitude);
-            console.log(currentDate);
-            console.log(submitDate);
+           
             var queryEventsURL = "https://api.predicthq.com" + "/v1/events?local_rank_level=4&active.gte=" + currentDate + "&active.lte=" + submitDate + "&sort=local_rank&within=20mi%40" + latitudeInt + "," + longitudeInt;
 
-            console.log(queryEventsURL);
-            console.log(latitude);
-            console.log(longitude);
             $.ajax({
                 url: queryEventsURL,
                 method: "GET",
                 headers: { "Authorization": "Bearer" + " 33PXWaaGfmpmXsDzo_JEY-lHTEeK0ltxc-5U8jZf" }
             })
                 .then(function (response2) {
-                    console.log(response2);
-                    for (var i = 0; i < response2.results.length; i++) {
 
-                        // console.log(response2.results[i].entities[0].formatted_address.split(",").pop().match(/\d+/g));
-                        console.log(response2.results[i].start);
-                    }
                     eventApiResponse = response2;
                     weather();
                 });
@@ -95,14 +83,12 @@ $("#submit-button").on("click", function (event) {
                 method: "GET"
             })
                 .then(function (response3) {
-                    console.log(queryWeatherURL);
-                    console.log(response3);
                     weatherApiResponse = response3.list;
-                    console.log(weatherApiResponse);
+
                     for (var i = 0; i < weatherApiResponse.length; i++) {
                         weatherApiArrObj.push(weatherApiResponse[i].dt_txt);
                     }
-                    console.log(weatherApiArrObj);
+
                     appendResponse();
                 });
         }
@@ -143,7 +129,6 @@ function dateChanger() {
 
     currentDate = year1 + "-" + month1 + "-" + day1;
     submitDate = year + "-" + month + "-" + day;
-    console.log(submitDate);
 }
 
 
@@ -163,34 +148,9 @@ function zipcode() {
     }
 }
 
-// function secondWeather() {
-//     var queryWeatherURL = "https://api.weatherbit.io/v2.0/forecast/daily?&postal_code=" + zipCodeUserInput + "&country=US&key=5293fa4c3ef1453b9472cda31e27e81b"
-//     $.ajax({
-//         url: queryWeatherURL,
-//         method: "GET"
-//     })
-//         .then(function (response3) {
-//             console.log(queryWeatherURL);
-//             console.log(response3);
-//             weatherApiResponse = response3.data;
-//             console.log(weatherApiResponse);
-//             for (var i = 0; i < 5; i++){
-//                 weatherApiArrObj.push(weatherApiResponse[i].valid_date);
-//                 console.log(weatherApiResponse[i].datetime);
-//                 console.log(parseInt((weatherApiResponse[i].high_temp)*(9/5)+32));
-//                 console.log(parseInt((weatherApiResponse[i].low_temp*(9/5)+32)));
-//                 console.log(parseInt((weatherApiResponse[i].temp*(9/5)+32)));
-//                 console.log(weatherApiResponse[i].weather.description);
-//             }
-//             console.log(weatherApiArrObj);
-//         })
-//     }
-
-
-
 function matchDate(index) {
     var eventDate = eventApiResponse.results[index].start.replace(/T/g, ' ').replace(/Z/g, ' ');
-    console.log(eventDate)
+
     function dateMatcher(z) {
         var eventMath = eventDate.split(/[\s:]+/);
         var addHour = parseInt(eventMath[1]) + z;
@@ -207,9 +167,9 @@ function matchDate(index) {
         } else {
             strAddHour = addHour.toString();
         }
-        console.log(strAddHour);
+
         eventMath.splice(1, 1, strAddHour);
-        console.log(eventMath); //0: Date 1: hour 2: Minutes 3: seconds
+
         var eventFirstHalf = eventMath[0];
         var eventSecondHalf = eventMath[1] + ":00:00";
         var eventStr = eventFirstHalf + " " + eventSecondHalf;
@@ -221,11 +181,7 @@ function matchDate(index) {
     var thisDate = trueDate[0] + " " + trueDate[1] + ":00:00"
     var eventDateOne = dateMatcher(1);
     var eventDateTwo = dateMatcher(-1);
-    console.log(eventDateOne);
-    console.log(eventDateTwo);
-    console.log(thisDate);
 
-    console.log(weatherApiArrObj.length)
     for (var i = 0; i < weatherApiArrObj.length; i++) {
         if (thisDate === weatherApiArrObj[i] || eventDateOne === weatherApiArrObj[i] || eventDateTwo === weatherApiArrObj[i]) {
            return i;
@@ -235,77 +191,10 @@ function matchDate(index) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function appendResponse() {
     var response2 = eventApiResponse;
-    var data = response2.results //filler for response from number of events
+    var data = response2.results 
 
-    //for loop for card results
     for (var i = 0; i < data.length; i++) {
         var weatherIndex = matchDate(i); // Returns index number of weatherApiArrObj to use for weatherApiResponse 
 
@@ -313,54 +202,45 @@ function appendResponse() {
         mainDiv.addClass("col-12");
 
         var cardDiv = $("<div>");
-        cardDiv.addClass("card default-border"); //border changes with weather
-
+        cardDiv.addClass("card default-border"); 
         var location = $("<div>");
         location.addClass("location card-header");
-        location.text(response2.results[i].entities[0].name + " " + response2.results[i].entities[0].formatted_address);  //Need to add Location
+        location.text(response2.results[i].entities[0].name + " " + response2.results[i].entities[0].formatted_address);  
 
         var cardBody = $("<div>");
         cardBody.addClass('card-body');
 
         var cardTitle = $("<h5>");
-        cardTitle.text(response2.results[i].title); //source response.results.entities.name
+        cardTitle.text(response2.results[i].title); 
         cardTitle.addClass("card-title event-name");
 
         var cardCatagory = $("<p>");
-        cardCatagory.text(response2.results[i].category); //type of event response.results.category
+        cardCatagory.text(response2.results[i].category); 
         cardCatagory.addClass("card-text");
 
         var cardStart = $("<p>");
-        cardStart.text(response2.results[i].start.replace(/T/g, ' ').replace(/Z/g, ' ')); //response.start
+        cardStart.text(response2.results[i].start.replace(/T/g, ' ').replace(/Z/g, ' ')); 
         cardStart.addClass("card-text");
 
         var cardWeather = $("<p>");
-        cardWeather.text((parseInt((weatherApiResponse[weatherIndex].main.temp-273)*1.8)+23) + degree); //response from weather API
+        cardWeather.text((parseInt((weatherApiResponse[weatherIndex].main.temp-273)*1.8)+23) + degree); 
         cardWeather.addClass("card-text temp");
 
-        // var highTemp = $("<p>");
-        // highTemp.text(((weatherApiResponse[weatherIndex].main.temp_max-273)*1.8)+23 + degree); //response from 2nd weather API
-        // highTemp.addClass("card-text high-temp");
-
-        // var lowTemp = $("<p>");
-        // lowTemp.text(((weatherApiResponse[weatherIndex].main.temp_min-273)*1.8)+23 + degree); //response from 2nd API
-        // lowTemp.addClass("card-text low-temp");
-
         var weatherDiscription = $("<p>");
-        weatherDiscription.text(weatherApiResponse[weatherIndex].weather[0].description); //response from 2nd weather API
+        weatherDiscription.text(weatherApiResponse[weatherIndex].weather[0].description); 
         console.log(weatherApiResponse[weatherIndex].weather[0])
         weatherDiscription.addClass("card-text weather-discription");
 
         var cardText = $("<p>");
-        cardText.text(response2.results[i].description); //source info from response.results.description
+        cardText.text(response2.results[i].description); 
         cardText.addClass("card-text");
 
         var googleSearch = response2.results[i].title.replace(/ /g, "+") + "+" + response2.results[i].entities[0].name.replace(/ /g, "+") + "+" + response2.results[i].entities[0].formatted_address.replace(/ /g, "+");
 
         var learnMore = $("<a>");
-        learnMore.addClass("btn default-button"); //source btn color from type of weather
+        learnMore.addClass("btn default-button"); 
         learnMore.attr({
-            'href': 'https://www.google.com/search?q=' + googleSearch, //google search i'm feeling lucky event title
+            'href': 'https://www.google.com/search?q=' + googleSearch, 
             'target': '_blank'
         });
 
@@ -371,15 +251,13 @@ function appendResponse() {
             'target': '_blank'
         });
 
-        //Need to add Directions button (.default-button-reverse)
+        
         learnMore.text('Learn More');
         directions.text('Directions');
 
-        cardBody.append(cardTitle, cardStart, cardText, cardWeather, weatherDiscription, learnMore, directions); //highTemp, lowTemp,
+        cardBody.append(cardTitle, cardStart, cardText, cardWeather, weatherDiscription, learnMore, directions); 
         cardDiv.append(location, cardBody);
         mainDiv.append(cardDiv);
-
-        
 
         $('#results-div').prepend(mainDiv);
     }
