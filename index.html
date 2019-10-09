@@ -9,7 +9,6 @@
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
 
     <link rel="stylesheet" href="assets/css/reset.css">
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -32,11 +31,12 @@
                     <p class="lead">Search Local Events and Check if the Weather is Going to Cooperate.</p>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" id="form-row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="number" placeholder="Zipcode" aria-label="Zipcode" id="zipcode-input" inputmode="numeric" pattern="^(?(^00000(|-0000))|(\d{5}(|-\d{4})))$">
-                        <input type="submit" class="btn btn-outline-light my-2 my-sm-0" name="Search"
+                        <input class="form-control mr-sm-2" type="number" placeholder="Zipcode" aria-label="Zipcode"
+                            id="zipcode-input" inputmode="numeric" pattern="/(^\d{5}$)|(^\d{5}-\d{4}$)/">
+                        <input type="submit" class="btn btn-outline-light my-2 my-sm-1" name="Search"
                             id="submit-button">
                     </form>
                 </div>
@@ -46,7 +46,12 @@
 
     <div id="results" class="container">
         <div class="row justify-content-center" id="results-div">
+           
         </div>
+    </div>
+
+    <div class="navbar">
+        <p class="copywrite">&copy2019 Whether Weather</p>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -56,6 +61,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
     <script src="assets/javascript/app.js"></script>
 </body>
 

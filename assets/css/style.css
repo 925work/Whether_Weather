@@ -28,9 +28,15 @@ body {
     color: #ffffff;
 }
 
+/* Error Message */
+.error-message {
+    color: #D4145A;
+    padding-left: 1rem;
+}
 /* Card */
 .card {
-    margin: 1rem;
+    margin-bottom: 2.7rem;
+    margin-top: 0.3rem;
 }
 
 .location {
@@ -53,9 +59,31 @@ body {
     font-size: 1.5rem;
 }
 
+.high-temp {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-weight: bold;
+    font-variant: small-caps;
+    color: #9E9E9E;
+}
+
+.low-temp {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-weight: bold;
+    font-variant: small-caps;
+    color: #9E9E9E;
+}
+
+.weather-discription {
+    color: #9E9E9E;
+
+}
+
 /* Default Button */
 .default-button {
     background-color: #4FC3F7;
+    margin-right: 0.5rem;
     color: #ffffff;
 }
 
@@ -67,22 +95,24 @@ body {
 
 .default-button-reverse {
     background-color: #ffffff;
-    color: #4FC3F7;
+    color: #4FC3F7!important;
     border-color: #4FC3F7
 }
 
 .default-button-reverse:hover {
     background-color: #4FC3F7;
-    color: #ffffff;
+    color: #ffffff!important;
 }
 
 .default-border {
     border-color: #4FC3F7;
+    border-width: 2px;
 }
 
 /* Hot Button */
 .hot-button {
     background-color: #ED1C24;
+    margin-right: 0.5rem;
     color: #ffffff;
 }
 
@@ -105,11 +135,13 @@ body {
 
 .hot-border {
     border-color:#ED1C24;
+    border-width: 2px;
 }
 
 /* Warm Button */
 .warm-button {
     background-color: #009E00;
+    margin-right: 0.5rem;
     color: #ffffff;
 }
 
@@ -132,11 +164,13 @@ body {
 
 .warm-border {
     border-color: #009E00;
+    border-width: 2px;
 }
 
 /* Cold Button */
 .cold-button {
     background-color: #A3A1FF;
+    margin-right: 0.5rem;
     color: #ffffff;
 }
 
@@ -159,4 +193,21 @@ body {
 
 .cold-border {
     border-color: #A3A1FF;
+    border-width: 2px;
+}
+
+/* Navbar */
+.copywrite {
+    width: 100%;
+    text-align: center;
+    color: #3abef9;
+}
+
+.navbar {
+    position: fixed;
+    margin-top: 15px;
+    width: 100%;
+    height: 40px;
+    bottom: 0;
+    background-color: #ffffff;
 }
