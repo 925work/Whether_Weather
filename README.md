@@ -18,6 +18,7 @@ Click here to go to [Whether Weather](https://mememoomoo.github.io/Whether_Weath
 * [Open Weather API](https://openweathermap.org/api)
 * [Mapquest API](https://developer.mapquest.com/documentation/)
 
+---
 ### © 2019 Built By
 
  - [Alexander Pham](https://github.com/925work): Team Lead, Back End [LinkedIn](https://www.linkedin.com/in/alexanderpham626/)
